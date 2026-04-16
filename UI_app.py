@@ -227,6 +227,13 @@ class MainWindow(QMainWindow):
         seed_row.addWidget(self.spin_seed)
         shuffle_form.addRow(seed_row)
         ctrl_layout.addWidget(shuffle_group)
+        
+        # Keep Tiles group
+        keep_tiles_group = QGroupBox("Keep Tiles")
+        keep_tiles_form = QFormLayout(keep_tiles_group)
+        self.chk_keep_tiles = QCheckBox("Enable")
+        keep_tiles_form.addRow(self.chk_keep_tiles)
+        ctrl_layout.addWidget(keep_tiles_group)
 
         ctrl_layout.addStretch()
 
@@ -314,6 +321,7 @@ class MainWindow(QMainWindow):
         self.slider_margin.valueChanged.connect(self._update_command_preview)
         self.cmb_unit.currentTextChanged.connect(self._update_command_preview)
         self.chk_shuffle.toggled.connect(self._update_command_preview)
+        self.chk_keep_tiles.toggled.connect(self._update_command_preview)
         self.chk_no_rotate.toggled.connect(self._update_command_preview)
         self.chk_seed.toggled.connect(self._update_command_preview)
         self.spin_seed.valueChanged.connect(self._update_command_preview)
@@ -398,6 +406,8 @@ class MainWindow(QMainWindow):
                 cmd.append("--no-rotate")
             if self.chk_seed.isChecked():
                 cmd += ["--seed", str(self.spin_seed.value())]
+        if self.chk_keep_tiles.isChecked():
+            cmd.append("--keep-tiles")
         return cmd
 
     def _update_command_preview(self):
