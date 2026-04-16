@@ -1,4 +1,4 @@
-"""SVG Tile Shuffler - PySide6 Desktop App."""
+"""SVG Tiles Shuffler - PySide6 Desktop App."""
 
 import sys
 import subprocess
@@ -109,7 +109,7 @@ class SvgPreview(QGraphicsView):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("SVG Tile Shuffler")
+        self.setWindowTitle("SVG Tiles Shuffler")
         self.setMinimumSize(1000, 700)
         self.setAcceptDrops(True)
 
@@ -345,7 +345,7 @@ class MainWindow(QMainWindow):
         self.tabs.setCurrentIndex(0)
         self.btn_generate.setEnabled(True)
         self.statusBar().showMessage(f"Loaded: {self.input_path.name}")
-        self.setWindowTitle(f"SVG Tile Shuffler - {self.input_path.name}")
+        self.setWindowTitle(f"SVG Tiles Shuffler - {self.input_path.name}")
         self._update_command_preview()
 
     def _on_unit_changed(self, unit):
